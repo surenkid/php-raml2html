@@ -1,0 +1,25 @@
+<h2>文档目录</h2>
+
+<ul>
+	<li><a href="<?php echo $_SERVER['PHP_SELF']; ?>?path=/">Index</a></li>
+
+	<?php foreach ($RAML->getChildPaths('/') as $endpoint => $resource) { ?>
+	<li><a href="<?php echo $_SERVER['PHP_SELF']; ?>?path=<?php echo $endpoint; ?>"><?php echo $endpoint; ?></a></li>
+	<?php } ?>
+</ul>
+
+<p>&nbsp;</p>
+
+<h2>
+	服务器状态:
+
+	<?php
+	$status = $RAML->pingStatus();
+	if ($status == 'online'): ?>
+		<span class="online">在线</span>
+	<?php else: ?>
+		<span class="offline">离线</span>
+	<?php endif; ?>
+</h2>
+
+<small style="display: block; margin: -10px 0 20px 0;">Updated every 5 minutes</small>
